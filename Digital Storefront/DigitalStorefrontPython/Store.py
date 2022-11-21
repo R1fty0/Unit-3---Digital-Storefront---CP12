@@ -147,7 +147,6 @@ def StartProgram():
     deposit = input('How much do you want to deposit into your account?: ')
     global myBankAccount
     myBankAccount = BankAccountTemplate(deposit)
-    global StillShopping
     StillShopping = True
 
 def MainMenu():
