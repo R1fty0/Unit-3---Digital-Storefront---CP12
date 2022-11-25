@@ -1,9 +1,7 @@
-# Global Variable for the User's Password.
-#Password = "No Password"
-import Store
 
 
-def checkPassword():
+
+def CheckPassword():
     passEntry = input('Please enter your password to confirm your identity: ')
     if passEntry == Password:
         return True
@@ -12,23 +10,22 @@ def checkPassword():
         return False
 
 
-class BankAccountTemplate:
+class UserBankAccount:
 
     def __init__(self, initialDeposit, password=None):
         self.Balance = float(initialDeposit)
         if password is None:
-            self.setPassword()
+            self.SetPassword()
 
-    def setPassword(self):
+    def SetPassword(self):
         global Password
         Password = input('Please enter a password for your account: ')
         confirmPassword = input('Please input your password one more time to confirm it!: ')
         if Password != confirmPassword:
             print('Your passwords to not match ... ')
-            self.setPassword()
+            self.SetPassword()
         else:
             print('Password set! Your account is now ready!')
-            Store.MainMenu()
 
     # Returns true if you have more balance than cost, false if you don't
     def CanUserAffordItem(self, Amount):
@@ -38,7 +35,7 @@ class BankAccountTemplate:
             return False
 
     def makePurchase(self, Amount):
-        if checkPassword():
+        if CheckPassword():
             if Amount <= self.Balance:
                 self.Balance -= Amount
                 print(f'{Amount} spent from your account.')

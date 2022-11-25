@@ -1,9 +1,6 @@
 from StoreInventory import StoreInventory
-from UserFinances import BankAccountTemplate
+from UserFinances import UserBankAccount
 from Buyable import Buyable, GamesForSale, FoodForSale, ClothesForSale
-
-# Variable that Determines whether the User is still Using the Program.
-StillShopping = False
 
 # Initialize inventories
 Inventory = StoreInventory()
@@ -11,7 +8,7 @@ myStuff = list()
 myShoppingCart = list()
 
 # Placeholder bank account
-myBankAccount = BankAccountTemplate(1, 'placeholder')
+myBankAccount = UserBankAccount(1, 'placeholder')
 
 # FUNCTIONS TO MANAGE MENUING SYSTEM IN MAIN SHOPPING PROGRAM
 
@@ -56,17 +53,17 @@ def BuyItem():
         print('The Item you are looking for is sold out or does not exist. Sorry!')
 
 
-def reviewMyInventory():
+def ReviewMyInventory():
     print('Here is a list of the items you now own: ')
     for item in myStuff:
         print(item.name)
 
 
-def reviewFinancials():
+def ReviewUserFinances():
     myBankAccount.balanceReport()
 
 
-def reviewMyShoppingCart():
+def ReviewMyShoppingCart():
     if len(myShoppingCart) > 0:
         print('Here are all of the items being held in your shopping cart: ')
         for item in myShoppingCart:
@@ -97,12 +94,12 @@ def buyItemInShoppingCart():
 
 
 def removeItemFromShoppingCart(item):
-    userChoice = input('Which item would you like to remove from your shopping cart?')
+    UserChoice = input('Which item would you like to remove from your shopping cart?')
 
     # Compare user requested name with cart entry names and remove item if found
     itemInCart: Buyable
     for itemInCart in myShoppingCart:
-        if itemInCart.name.lower() == userChoice.lower():
+        if itemInCart.name.lower() == UserChoice.lower():
             print(f'You have removed {itemInCart.name} from your shopping cart!')
             moveItemFromShoppingCartToInventory(itemInCart)
         else:
@@ -141,16 +138,8 @@ def makePurchaseFromShoppingCart(item):
         print('You can\'t afford that item ... ')
 
 
-def StartProgram():
-    print('Welcome to the Storefront!')
-    print('Before you begin shopping, please set up a bank account.')
-    deposit = input('How much do you want to deposit into your account?: ')
-    global myBankAccount
-    myBankAccount = BankAccountTemplate(deposit)
-    StillShopping = True
-
 def MainMenu():
-    while StillShopping:
+    while True:
         print("\n****************************************************** ")
         print("Please choose from one of the following menu options: ")
         print("1. View catalog of items to buy")
@@ -168,18 +157,31 @@ def MainMenu():
         elif userChoice == 2:
             BuyItem()
         elif userChoice == 3:
-            reviewMyShoppingCart()
+            ReviewMyShoppingCart()
         elif userChoice == 4:
-            reviewMyInventory()
+            ReviewMyInventory()
         elif userChoice == 5:
-            reviewFinancials()
+            ReviewUserFinances()
         elif userChoice == 6:
             print("YOUR CONTENT HERE!")
         elif userChoice == 7:
             print('Thanks for shopping! Now exiting program ... ')
-            StillShopping = False
+            break
         else:
-            print('Incorrect input! Please choose again.')
+            print('Incorrect input! Please select an option again.')
 
-# Program Starts Here
+def StartProgram():
+    print('Welcome to the Storefront!')
+    print('Before you begin shopping, please set up a bank account.')
+    deposit = input('How much do you want to deposit into your account?: ')
+    global myBankAccount
+    myBankAccount = UserBankAccount(deposit)
+    StillShopping = True
+    MainMenu()
+
+
+# Starts Program
 StartProgram()
+
+
+

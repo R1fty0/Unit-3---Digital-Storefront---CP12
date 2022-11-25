@@ -1,5 +1,6 @@
 from Buyable import Buyable, ClothesForSale, FoodForSale, GamesForSale
 
+# Add Shoes to Systems
 
 class StoreInventory:
 
@@ -7,6 +8,7 @@ class StoreInventory:
         self.ClothingInventory = []
         self.FoodInventory = []
         self.GameInventory = []
+        self.ShoesInventory = []
         self.initializeInventoryLists()
 
     def ReturnSuppyStatusOfFullInventory(self):

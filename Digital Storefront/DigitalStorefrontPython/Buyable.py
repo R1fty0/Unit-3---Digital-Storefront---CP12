@@ -1,3 +1,4 @@
+# Added Shoes to the Invertory
 class Buyable:
     def __init__(self, price, name, category):
         self.price = price
@@ -22,3 +23,13 @@ class GamesForSale(Buyable):
         super().__init__(price, name, "Clothing")
         self.numPlayers = numPlayers
         self.genre = genre
+
+class ShoesForSale(Buyable):
+    def __init__(self, price, name, size, brand, colour):
+        super().__init__(price, name, "Shoes")
+        self.size = size
+        self.brand = brand
+        self.colour = colour
+
+
+
