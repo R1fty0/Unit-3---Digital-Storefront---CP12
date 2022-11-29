@@ -1,0 +1,55 @@
+Digital Storefront Extensions and Requirements:
+
+- Adding all text to classes (one class for each menu).
+- The option to return any item with 1 minute of purchase
+- A Night Market that randomly appears where all items have a randomly generated discount.
+- Adding an Admin account with a unique password, which allows them to add new items to the store, edit prices and view sales of previous items.
+- Adding an option to select what country and currency the user is in, and having prices adjust accordingly.
+
+
+Tier 1:
+    Add exception handling to all relevant menus to prevent the user from breaking cod logic
+
+    Add a new class of Buyable items to the store and pre-populate the store with at least 5 unique items in the categories inventory.
+    Integrate your new buyable class into the menus and data management for your shopping cart.
+
+Tier 2 & 3:
+    Improve the Store class’ viewCatalog() method to provide the user a menu to choose which sub-catalog they want to view individually.
+    Advanced: Provide the user another menu to choose which specific item they want to view more details about individually.
+
+    Improve the reviewMyStuff() method, which pulls data from the list that contains all of the items you have bought, to contain a lot more functionality. Instead of just reporting everything the user has bought all at once, provide a more customized experience that gives the user more choice and information when reviewing their stuff.
+    Hint: You may need to adjust how the user’s bought items are stored and tracked to provide access to certain information.
+    Advanced: Create the menuing needed for the user to view any detail of every item they own. Hint: Use methods to create sub-menus for categories of things.
+
+    Improve the StoreInventory class in the following ways:
+    Instead of just removing bought items completely, create a separate database to keep track of items that have been sold (give it a memory).
+    Advanced: Provide the user with the ability to viewRecentPurchases(), which should report the 3 (or fewer) most recent items they bought in the store. Hint: you will need to add content to the Store class’ menu to give the user access to this tool.
+
+
+
+Changes:
+    - Added All UI to "Start Program" and "MainMenu" methods.
+    - Reworked the Store Inventory Module
+    - Added Specs for Computer Games
+    - Added More Specific Classes for Items in Buyable module
+
+
+Forza Horizion 4 Specs:
+- OS: Windows 10 version 15063.0 or higher.
+- Processor: Intel i7-3820 @ 3.6Ghz.
+- Memory: 12 GB RAM.
+- Graphics: NVidia GTX 970 OR NVidia GTX 1060 3GB OR AMD R9 290x OR AMD RX 470.
+- DirectX: Version 12.
+- Network: Broadband Internet connection.
+- Storage: 100 GB available space.
+
+Call of Duty: Modern Warfare 2 PC Minimum System Requirements:
+Requires a 64-bit processor and operating system
+
+- OS: Windows® 10 64 Bit (latest update)
+- Processor: Intel® Core™ i3-6100 / Core™ i5-2500K or AMD Ryzen™ 3 1200
+- Memory: 8 GB RAM
+- Graphics: NVIDIA® GeForce® GTX 960 or AMD Radeon™ RX 470 - DirectX 12.0 compatible system
+- DirectX: Version 12
+- Network: Broadband Internet connection
+- Storage: 125 GB available space

@@ -1,6 +1,13 @@
+# Store Data Imports
 from StoreInventory import StoreInventory
 from UserFinances import UserBankAccount
-from Buyable import Buyable, GamesForSale, FoodForSale, ClothesForSale
+from Buyable import Buyable, BoardGamesForSale, FoodForSale, ClothesForSale
+
+# UI Imports
+from UIText import BasicUI
+from UIText import StartProgramDialogue
+from UIText import MainMenuDialogue
+
 
 # Initialize inventories
 Inventory = StoreInventory()
@@ -13,9 +20,6 @@ myBankAccount = UserBankAccount(1, 'placeholder')
 # FUNCTIONS TO MANAGE MENUING SYSTEM IN MAIN SHOPPING PROGRAM
 
 # I have switched the naming scheme of the project to Pastel Casing - easier to read in my opinion.
-
-# Question - Is the syntax style similar to C# intentional or a mistake - if statements with a br
-
 
 def ViewCatalog():
     print('Here is a list of all of the items currently for sale!')
@@ -97,13 +101,13 @@ def removeItemFromShoppingCart(item):
     UserChoice = input('Which item would you like to remove from your shopping cart?')
 
     # Compare user requested name with cart entry names and remove item if found
-    itemInCart: Buyable
-    for itemInCart in myShoppingCart:
-        if itemInCart.name.lower() == UserChoice.lower():
-            print(f'You have removed {itemInCart.name} from your shopping cart!')
-            moveItemFromShoppingCartToInventory(itemInCart)
+    ItemInCart: Buyable
+    for ItemInCart in myShoppingCart:
+        if ItemInCart.name.lower() == UserChoice.lower():
+            print(f'You have removed {ItemInCart.name} from your shopping cart!')
+            moveItemFromShoppingCartToInventory(ItemInCart)
         else:
-            print('Item could not be found in your shopping cart. Nothing was removed.')
+            print('We could not find the item you are looking for in your shopping cart. Nothing was removed.')
 
 
 def moveItemToShoppingCart(item):
@@ -140,42 +144,44 @@ def makePurchaseFromShoppingCart(item):
 
 def MainMenu():
     while True:
-        print("\n****************************************************** ")
-        print("Please choose from one of the following menu options: ")
-        print("1. View catalog of items to buy")
-        print("2. Buy an item")
-        print("3. View your cart of held items")
-        print("4. Review the items you already own")
-        print("5. View the status of your financials")
-        print("6. YOUR CUSTOM IDEA HERE??")
-        print("7. Exit program")
+        print(BasicUI.Border)
+        
+        for MenuText in MainMenuDialogue.Dialogue:
+            print(MenuText)
 
-        userChoice = int(input())
+        UserChoice = int(input(MainMenuDialogue.MenuPrompt))
 
-        if userChoice == 1:
-            ViewCatalog()
-        elif userChoice == 2:
-            BuyItem()
-        elif userChoice == 3:
-            ReviewMyShoppingCart()
-        elif userChoice == 4:
-            ReviewMyInventory()
-        elif userChoice == 5:
-            ReviewUserFinances()
-        elif userChoice == 6:
-            print("YOUR CONTENT HERE!")
-        elif userChoice == 7:
-            print('Thanks for shopping! Now exiting program ... ')
-            break
-        else:
-            print('Incorrect input! Please select an option again.')
+        VerifyMenuMenuChoice(UserChoice)  # Verifies the User's Choice
+
+
+def VerifyMenuMenuChoice(UserChoice):
+    if UserChoice == 1:
+        ViewCatalog()
+    elif UserChoice == 2:
+        BuyItem()
+    elif UserChoice == 3:
+        ReviewMyShoppingCart()
+    elif UserChoice == 4:
+        ReviewMyInventory()
+    elif UserChoice == 5:
+        ReviewUserFinances()
+    elif UserChoice == 6:
+        print("YOUR CONTENT HERE!")
+    elif UserChoice == 7:
+        print('Thanks for shopping! Now exiting program ... ')
+         # break
+    else:
+        print('Incorrect input! Please select an option again.')
 
 def StartProgram():
-    print('Welcome to the Storefront!')
-    print('Before you begin shopping, please set up a bank account.')
-    deposit = input('How much do you want to deposit into your account?: ')
+    for Text in StartProgramDialogue.Dialogue:
+        print(Text)
+
+    UserDeposit = input(StartProgramDialogue.DepositPrompt)   # Asks the User how much money they would like to deposit in their account
+    print(BasicUI.Border)
+
     global myBankAccount
-    myBankAccount = UserBankAccount(deposit)
+    myBankAccount = UserBankAccount(UserDeposit)
     StillShopping = True
     MainMenu()
 
